@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Главная страница</title>
-</head>
-<body>
-<p>HEllO WORLD</p>
-</body>
-</html>
+{% extends 'women/base.html' %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+<p>Содержимое главной страницы</p>
+{% endblock %}
