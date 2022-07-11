@@ -130,4 +130,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
-###ключь от гита: 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
+###ключь от гита: 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
