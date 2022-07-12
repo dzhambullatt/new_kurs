@@ -3,10 +3,12 @@ from django.http import HttpResponse
 
 from .models import *
 
+menu = ["О сайте", "Добавить статью", "Обратная связь", "Войти"]
+
 
 def index(request):
     posts = Women.objects.all()
-    return render(request, 'women/index.html', {'title': 'Home Page', 'posts': posts})
+    return render(request, 'women/index.html', {'title': 'Home Page', 'posts': posts, 'menu': menu})
 
 
 def about(request):
