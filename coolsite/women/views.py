@@ -34,3 +34,7 @@ def contact(request):
 
 def login(request):
     return HttpResponse("Авторизация")
+
+
+def show_post(request, post_id):
+    return HttpResponse(f"Отображение статьи с id = {post_id}")
