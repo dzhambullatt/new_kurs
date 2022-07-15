@@ -3,17 +3,34 @@ from django.http import HttpResponse
 
 from .models import *
 
-menu = ["О сайте", "Добавить статью", "Обратная связь", "Войти"]
+menu = [{'title': "О сайте", 'url_name': 'about'},
+        {'title': "Добавить статью", 'url_name': 'add_page'},
+        {'title': "Обратная связь", 'url_name': 'contact'},
+        {'title': "Войти", 'url_name': 'login'}
+]
 
 
 def index(request):
     posts = Women.objects.all()
-    return render(request, 'women/index.html', {'title': 'Home Page', 'posts': posts, 'menu': menu})
+    context = {
+        'posts': posts,
+        'menu': menu,
+        'title': 'Главная страница'
+    }
+    return render(request, 'women/index.html', context=context)
 
 
 def about(request):
     return render(request, 'women/about.html', {'title': 'About Page'})
 
 
-#def categories(request, catid):
-#    return HttpResponse(f"<h1>Статьи по категориям</h1><p>{catid}</p>")
+def addpage(request):
+    return HttpResponse("Добавление статьи")
+
+
+def contact(request):
+    return HttpResponse("Обратная связь")
+
+
+def login(request):
+    return HttpResponse("Авторизация")
