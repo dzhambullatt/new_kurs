@@ -18,7 +18,8 @@ def index(request):
         'posts': posts,
         'cats': cats,
         'menu': menu,
-        'title': 'Главная страница'
+        'title': 'Главная страница',
+        'cat_selected': 0,
     }
     return render(request, 'women/index.html', context=context)
 

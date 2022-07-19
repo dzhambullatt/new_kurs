@@ -130,4 +130,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
-# 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
+# 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
