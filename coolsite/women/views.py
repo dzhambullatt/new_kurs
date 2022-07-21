@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import Http404
 
 from .models import *
 
@@ -47,6 +48,9 @@ def show_post(request, post_id):
 def show_category(request, cat_id):
     posts = Women.objects.filter(cat_id=cat_id)
     cats = Category.objects.all()
+
+    if len(posts) == 0:
+        raise Http404()
 
     context = {
         'posts': posts,
