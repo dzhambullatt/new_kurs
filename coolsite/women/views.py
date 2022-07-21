@@ -8,7 +8,7 @@ menu = [{'title': "О сайте", 'url_name': 'about'},
         {'title': "Добавить статью", 'url_name': 'add_page'},
         {'title': "Обратная связь", 'url_name': 'contact'},
         {'title': "Войти", 'url_name': 'login'}
-]
+        ]
 
 
 def index(request):
@@ -61,4 +61,3 @@ def show_category(request, cat_id):
     }
 
     return render(request, 'women/index.html', context=context)
-
