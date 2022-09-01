@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.http import Http404
+from django.views.generic import ListView
 
 from .models import *
 from .forms import *
@@ -12,16 +13,20 @@ menu = [{'title': "О сайте", 'url_name': 'about'},
         ]
 
 
-def index(request):
-    posts = Women.objects.all()
+class WomenHome(ListView):
+    model = Women
+    template_name = 'women/index.html'
 
-    context = {
-        'posts': posts,
-        'menu': menu,
-        'title': 'Главная страница',
-        'cat_selected': 0,
-    }
-    return render(request, 'women/index.html', context=context)
+# def index(request):
+#     posts = Women.objects.all()
+#
+#     context = {
+#         'posts': posts,
+#         'menu': menu,
+#         'title': 'Главная страница',
+#         'cat_selected': 0,
+#     }
+#     return render(request, 'women/index.html', context=context)
 
 
 def about(request):
