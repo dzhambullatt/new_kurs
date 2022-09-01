@@ -16,6 +16,12 @@ menu = [{'title': "О сайте", 'url_name': 'about'},
 class WomenHome(ListView):
     model = Women
     template_name = 'women/index.html'
+    context_object_name = 'posts'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['menu'] = menu
+        return context
 
 # def index(request):
 #     posts = Women.objects.all()
