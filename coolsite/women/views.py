@@ -80,9 +80,17 @@ class WomenCategory(ListView):
     model = Women
     template_name = 'women/index.html'
     context_object_name = 'posts'
+    allow_empty = False
 
     def get_queryset(self):
         return Women.objects.filter(cat__slug=self.kwargs['cat_slug'], is_published=True)
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Категория - ' + str(context['posts'][0].cat)
+        context['menu'] = menu
+        context['cat_selected'] = context['posts'][0].cat_id
+        return context
 
 # def show_category(request, cat_id):
 #     posts = Women.objects.filter(cat_id=cat_id)
