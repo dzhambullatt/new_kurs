@@ -63,6 +63,19 @@ def login(request):
     return HttpResponse("Авторизация")
 
 
+def show_post(request, post_slug):
+    post = get_object_or_404(Women, slug=post_slug)
+
+    context = {
+        'post': post,
+        'menu': menu,
+        'title': post.title,
+        'cat_selected': post.cat_id,
+    }
+
+    return render(request, 'women/post.html', context=context)
+
+
 class WomenCategory(ListView):
     model = Women
     template_name = 'women/index.html'
@@ -71,30 +84,17 @@ class WomenCategory(ListView):
     def get_queryset(self):
         return Women.objects.filter(cat__slug=self.kwargs['cat_slug'], is_published=True)
 
-# def show_post(request, post_slug):
-#     post = get_object_or_404(Women, slug=post_slug)
+# def show_category(request, cat_id):
+#     posts = Women.objects.filter(cat_id=cat_id)
+#
+#     if len(posts) == 0:
+#         raise Http404()
 #
 #     context = {
-#         'post': post,
+#         'posts': posts,
 #         'menu': menu,
-#         'title': post.title,
-#         'cat_selected': post.cat_id,
+#         'title': 'Отображение по рубрикам',
+#         'cat_selected': cat_id,
 #     }
 #
-#     return render(request, 'women/post.html', context=context)
-
-
-def show_category(request, cat_id):
-    posts = Women.objects.filter(cat_id=cat_id)
-
-    if len(posts) == 0:
-        raise Http404()
-
-    context = {
-        'posts': posts,
-        'menu': menu,
-        'title': 'Отображение по рубрикам',
-        'cat_selected': cat_id,
-    }
-
-    return render(request, 'women/index.html', context=context)
+#     return render(request, 'women/index.html', context=context)
