@@ -7,12 +7,6 @@ from django.views.generic import ListView, DetailView,CreateView
 from .models import *
 from .forms import *
 
-menu = [{'title': "О сайте", 'url_name': 'about'},
-        {'title': "Добавить статью", 'url_name': 'add_page'},
-        {'title': "Обратная связь", 'url_name': 'contact'},
-        {'title': "Войти", 'url_name': 'login'}
-        ]
-
 
 class WomenHome(ListView):
     model = Women
@@ -44,17 +38,6 @@ class AddPage(CreateView):
         context['title'] = 'Добавление статьи'
         context['menu'] = menu
         return context
-
-
-# def addpage(request):
-#     if request.method == 'POST':
-#         form = AddPostForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('home')
-#     else:
-#         form = AddPostForm()
-#     return render(request, 'women/addpage.html', {'form': form, 'menu': menu, 'title': 'Добавление статьи'})
 
 
 def contact(request):
