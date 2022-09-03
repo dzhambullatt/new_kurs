@@ -12,7 +12,6 @@ from .utils import *
 
 
 class WomenHome(DataMixin, ListView):
-    paginate_by = 3
     model = Women
     template_name = 'women/index.html'
     context_object_name = 'posts'
@@ -27,7 +26,12 @@ class WomenHome(DataMixin, ListView):
 
 
 def about(request):
-    return render(request, 'women/about.html', {'title': 'About Page'})
+    contact_list = Women.objects.all()
+    paginator = Paginator(contact_list, 3)
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'women/about.html', {'page_obj': page_obj, 'menu': menu, 'title': 'О сайте'})
 
 
 class AddPage(LoginRequiredMixin, DataMixin, CreateView):
