@@ -92,7 +92,7 @@ class RegisterUser(DataMixin, CreateView):
 
 
 class LoginUser(DataMixin, LoginView):
-    form_class = AuthenticationForm
+    form_class = LoginUserForm
     template_name = 'women/login.html'
 
     def get_context_data(self, *, object_list=None, **kwargs):
